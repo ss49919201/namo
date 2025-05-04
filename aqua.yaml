@@ -1,0 +1,5 @@
+registries:
+- type: standard
+  ref: v4.359.0 # renovate: depName=aquaproj/aqua-registry
+packages:
+- name: sqldef/sqldef/sqlite3def@v1.0.6
