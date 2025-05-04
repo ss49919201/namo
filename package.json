@@ -1,7 +1,0 @@
-{
-  "name": "namo",
-  "license": "MIT",
-  "devDependencies": {
-    "supabase": "^2.22.6"
-  }
-}
