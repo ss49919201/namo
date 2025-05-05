@@ -1,0 +1,115 @@
+openapi: 3.0.0
+info:
+  title: Namo API
+  version: 0.0.0
+tags: []
+paths:
+  /echo:
+    post:
+      operationId: EchoOperations_echo
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EchoResponse'
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+  /hello:
+    get:
+      operationId: HelloOperations_getHello
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HelloResponse'
+  /users:
+    get:
+      operationId: UserOperations_listUsers
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      operationId: UserOperations_createUser
+      parameters: []
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+  /users/{name}:
+    get:
+      operationId: UserOperations_getUser
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The request has succeeded.
+          content:
+            application/json:
+              schema:
+                anyOf:
+                  - $ref: '#/components/schemas/User'
+                  - $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EchoResponse:
+      type: object
+      required:
+        - content
+      properties:
+        content:
+          type: string
+    ErrorResponse:
+      type: object
+      required:
+        - message
+        - code
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          format: int32
+    HelloResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+    User:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
