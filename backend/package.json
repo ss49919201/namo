@@ -8,7 +8,9 @@
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"typespec": "tsp",
-		"generate-api": "tsp compile ./api/main.tsp"
+		"generate-api": "tsp compile ./api/main.tsp",
+		"generate-types": "go tool oapi-codegen -package api -generate types -o generated/types.go tsp-output/@typespec/openapi3/openapi.yaml",
+		"generate-server": "go tool oapi-codegen -package api -generate server -o generated/server.go tsp-output/@typespec/openapi3/openapi.yaml"
 	},
 	"devDependencies": {
 		"@typespec/compiler": "^1.0.0-rc.1",

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"io"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -12,35 +11,12 @@ import (
 // APIServer implements the ServerInterface
 type APIServer struct{}
 
-// EchoOperationsEcho implements the echo endpoint
-func (s *APIServer) EchoOperationsEcho(ctx echo.Context) error {
-	body, err := io.ReadAll(ctx.Request().Body)
-	if err != nil {
-		return err
-	}
-
-	response := api.EchoResponse{
-		Content: string(body),
-	}
-
-	return ctx.JSON(http.StatusOK, response)
-}
-
-// HelloOperationsGetHello implements the hello endpoint
-func (s *APIServer) HelloOperationsGetHello(ctx echo.Context) error {
-	response := api.HelloResponse{
-		Message: "Hello!",
-	}
-
-	return ctx.JSON(http.StatusOK, response)
-}
-
 // UserOperationsListUsers implements the list users endpoint
 func (s *APIServer) UserOperationsListUsers(ctx echo.Context) error {
 	// ここではダミーデータを返します
 	users := []api.User{
-		{Name: "user1"},
-		{Name: "user2"},
+		{Id: 1, Name: "user1"},
+		{Id: 2, Name: "user2"},
 	}
 
 	return ctx.JSON(http.StatusOK, users)
@@ -58,10 +34,11 @@ func (s *APIServer) UserOperationsCreateUser(ctx echo.Context) error {
 }
 
 // UserOperationsGetUser implements the get user endpoint
-func (s *APIServer) UserOperationsGetUser(ctx echo.Context, name string) error {
+func (s *APIServer) UserOperationsGetUser(ctx echo.Context, id int64) error {
 	// ここでは単純に指定された名前のユーザーを返します
 	user := api.User{
-		Name: name,
+		Id:   id,
+		Name: "name",
 	}
 
 	return ctx.JSON(http.StatusOK, user)

@@ -14,43 +14,19 @@ import (
 // ServerInterface represents all server handlers.
 type ServerInterface interface {
 
-	// (POST /echo)
-	EchoOperationsEcho(ctx echo.Context) error
-
-	// (GET /hello)
-	HelloOperationsGetHello(ctx echo.Context) error
-
 	// (GET /users)
 	UserOperationsListUsers(ctx echo.Context) error
 
 	// (POST /users)
 	UserOperationsCreateUser(ctx echo.Context) error
 
-	// (GET /users/{name})
-	UserOperationsGetUser(ctx echo.Context, name string) error
+	// (GET /users/{id})
+	UserOperationsGetUser(ctx echo.Context, id int64) error
 }
 
 // ServerInterfaceWrapper converts echo contexts to parameters.
 type ServerInterfaceWrapper struct {
 	Handler ServerInterface
-}
-
-// EchoOperationsEcho converts echo context to params.
-func (w *ServerInterfaceWrapper) EchoOperationsEcho(ctx echo.Context) error {
-	var err error
-
-	// Invoke the callback with all the unmarshaled arguments
-	err = w.Handler.EchoOperationsEcho(ctx)
-	return err
-}
-
-// HelloOperationsGetHello converts echo context to params.
-func (w *ServerInterfaceWrapper) HelloOperationsGetHello(ctx echo.Context) error {
-	var err error
-
-	// Invoke the callback with all the unmarshaled arguments
-	err = w.Handler.HelloOperationsGetHello(ctx)
-	return err
 }
 
 // UserOperationsListUsers converts echo context to params.
@@ -74,16 +50,16 @@ func (w *ServerInterfaceWrapper) UserOperationsCreateUser(ctx echo.Context) erro
 // UserOperationsGetUser converts echo context to params.
 func (w *ServerInterfaceWrapper) UserOperationsGetUser(ctx echo.Context) error {
 	var err error
-	// ------------- Path parameter "name" -------------
-	var name string
+	// ------------- Path parameter "id" -------------
+	var id int64
 
-	err = runtime.BindStyledParameterWithOptions("simple", "name", ctx.Param("name"), &name, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	err = runtime.BindStyledParameterWithOptions("simple", "id", ctx.Param("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
 	if err != nil {
-		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter name: %s", err))
+		return echo.NewHTTPError(http.StatusBadRequest, fmt.Sprintf("Invalid format for parameter id: %s", err))
 	}
 
 	// Invoke the callback with all the unmarshaled arguments
-	err = w.Handler.UserOperationsGetUser(ctx, name)
+	err = w.Handler.UserOperationsGetUser(ctx, id)
 	return err
 }
 
@@ -115,10 +91,8 @@ func RegisterHandlersWithBaseURL(router EchoRouter, si ServerInterface, baseURL 
 		Handler: si,
 	}
 
-	router.POST(baseURL+"/echo", wrapper.EchoOperationsEcho)
-	router.GET(baseURL+"/hello", wrapper.HelloOperationsGetHello)
 	router.GET(baseURL+"/users", wrapper.UserOperationsListUsers)
 	router.POST(baseURL+"/users", wrapper.UserOperationsCreateUser)
-	router.GET(baseURL+"/users/:name", wrapper.UserOperationsGetUser)
+	router.GET(baseURL+"/users/:id", wrapper.UserOperationsGetUser)
 
 }

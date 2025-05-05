@@ -2,26 +2,13 @@ import "@typespec/http";
 import "@typespec/rest";
 
 using TypeSpec.Http;
-using TypeSpec.Rest;
 
-@service(#{
-  title: "Namo API",
-  version: "1.0.0"
-})
+@service(#{ title: "Namo API", version: "1.0.0" })
 namespace NamoAPI {
-
   // モデル定義
   model User {
+    id: int64;
     name: string;
-  }
-
-  // レスポンスモデル
-  model HelloResponse {
-    message: string;
-  }
-
-  model EchoResponse {
-    content: string;
   }
 
   // エラーレスポンス
@@ -30,29 +17,20 @@ namespace NamoAPI {
     code: int32;
   }
 
-  // APIエンドポイント
-  @route("/hello")
-  interface HelloOperations {
-    @get
-    getHello(): HelloResponse;
-  }
-
-  @route("/echo")
-  interface EchoOperations {
-    @post
-    echo(@body content: string): EchoResponse;
-  }
-
   @route("/users")
   interface UserOperations {
     @get
-    listUsers(): User[];
+    listUsers(): User[] | ErrorResponse;
 
     @post
-    createUser(@body user: User): User;
+    createUser(
+      @body user: {
+        name: string;
+      },
+    ): User;
 
     @get
-    @route("{name}")
-    getUser(@path name: string): User | ErrorResponse;
+    @route("{id}")
+    getUser(@path id: int64): User | ErrorResponse;
   }
 }
