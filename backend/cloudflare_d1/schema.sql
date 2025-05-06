@@ -1,3 +1,0 @@
-CREATE TABLE users (
-  name VARCHAR(40) DEFAULT NULL
-);
