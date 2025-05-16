@@ -1,6 +1,14 @@
 {
-  "name": "namo-backend",
-  "dependencies": {
-    "@typespec/compiler": "^1.0.0"
-  }
+  "name": "namo",
+  "version": "0.1.0",
+  "type": "module",
+  "devDependencies": {
+    "@typespec/compiler": "1.0.0",
+    "@typespec/http": "1.0.1",
+    "@typespec/openapi": "1.0.0",
+    "@typespec/openapi3": "1.0.0",
+    "@typespec/rest": "0.70.0"
+  },
+  "private": true,
+  "packageManager": "npm@11.4.0+sha512.759091a21ee805d9c842bcfe2878d6626c48a16a5ca73c1e1338fa8379951abfc2d273ec4ad12ede64bd294237c6719b3bcc518118d1affe8a38985fe5d29773"
 }
