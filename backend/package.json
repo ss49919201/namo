@@ -1,0 +1,6 @@
+{
+  "name": "namo-backend",
+  "dependencies": {
+    "@typespec/compiler": "^1.0.0"
+  }
+}
