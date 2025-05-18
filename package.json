@@ -6,7 +6,10 @@
     "build": "vite build && vite build --ssr",
     "preview": "$npm_execpath run build && wrangler dev dist-server/index.js",
     "deploy": "$npm_execpath run build && wrangler deploy dist-server/index.js",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "drizzle:generate": "drizzle-kit generate --config=./src/infrastructure/db/d1/drizzle.config.ts",
+    "migrate:local": "wrangler d1 migrations apply D1 --local",
+    "migrate": "wrangler d1 migrations apply D1 --remote"
   },
   "dependencies": {
     "drizzle-orm": "^0.43.1",
