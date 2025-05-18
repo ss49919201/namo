@@ -1,0 +1,21 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Project Setup & Development Environment Rules
+
+このプロジェクトの開発環境整備・初期セットアップ・運用ルールをまとめます。
+
+## 1. コーディング規約
+- コードフォーマットは [Prettier](mdc:.prettierrc) に準拠し、`npm run format` で自動整形します。
+- 静的解析は [ESLint](mdc:eslint.config.js) で行い、`npm run lint` でエラーゼロを維持します。
+- TypeScriptの型安全を重視し、`any`の使用は最小限にします。
+
+## 2. ディレクトリ構成
+- ソースコードは `src/` 配下に配置します。
+- UIコンポーネントは `src/components/`、DB関連は `src/infrastructure/db/` に配置します。
+
+## 3. タスク管理
+- タスクは [tasks/01_project_setup.md](mdc:tasks/01_project_setup.md) など `tasks/` ディレクトリのmdファイルで管理します。
+- 完了したら必ずチェックを入れ、進捗を可視化します。
