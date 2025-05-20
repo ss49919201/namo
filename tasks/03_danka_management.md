@@ -1,23 +1,23 @@
-# 檀家情報管理機能
+# 門徒情報管理機能
 
 ## 目的
 
-檀家の基本情報、家族構成、故人情報を効率的に管理するシステムを実現する。
+門徒の基本情報、家族構成、故人情報を効率的に管理するシステムを実現する。
 
 ## タスク内容
 
-### 3.1 檀家基本情報管理
+### 3.1 門徒基本情報管理
 
-- [ ] 檀家一覧画面
-  - 檀家リスト表示
+- [ ] 門徒一覧画面
+  - 門徒リスト表示
   - ページネーション
   - ソート機能
   - フィルター機能
-- [ ] 檀家詳細画面
+- [ ] 門徒詳細画面
   - 基本情報表示
   - タブ形式の情報表示
   - 編集モード切替
-- [ ] 檀家登録/編集フォーム
+- [ ] 門徒登録/編集フォーム
   - 入力フォーム実装
   - バリデーション
   - 住所自動補完
@@ -59,19 +59,19 @@
 
 ## 関連ファイル
 
-- `app/danka/page.tsx`
-- `app/danka/[id]/page.tsx`
-- `app/danka/new/page.tsx`
-- `components/danka/DankaList.tsx`
-- `components/danka/DankaForm.tsx`
-- `components/danka/FamilyList.tsx`
-- `components/danka/DeceasedList.tsx`
-- `lib/danka.ts`
-- `types/danka.ts`
+- `app/monto/page.tsx`
+- `app/monto/[id]/page.tsx`
+- `app/monto/new/page.tsx`
+- `components/monto/MontoList.tsx`
+- `components/monto/MontoForm.tsx`
+- `components/monto/FamilyList.tsx`
+- `components/monto/DeceasedList.tsx`
+- `lib/monto.ts`
+- `types/monto.ts`
 
 ## 完了条件
 
-- [ ] 檀家情報の CRUD 操作が正常に機能すること
+- [ ] 門徒情報の CRUD 操作が正常に機能すること
 - [ ] 家族構成情報が適切に管理できること
 - [ ] 故人情報が正確に記録・表示されること
 - [ ] データの整合性が保たれること
