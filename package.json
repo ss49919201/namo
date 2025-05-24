@@ -2,7 +2,7 @@
   "name": "basic",
   "type": "module",
   "scripts": {
-    "drizzle:generate": "drizzle-kit generate --config=./src/infrastructure/db/d1/drizzle.config.ts",
+    "drizzle:generate": "drizzle-kit generate --config=./src/infra/db/d1/drizzle.config.ts",
     "migrate:local": "wrangler d1 migrations apply D1 --local",
     "migrate": "wrangler d1 migrations apply D1 --remote",
     "dev": "vite",

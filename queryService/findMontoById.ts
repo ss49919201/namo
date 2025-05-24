@@ -1,13 +1,35 @@
+import { eq } from "drizzle-orm";
+import { Database } from "../infra/db/connection";
+import { montos } from "../infra/db/d1/schema";
+
 export type FindMontoByIdInput = {
-  id: string;
+  id: number;
 };
 
 export type FindMontoByIdOutput = {
-  id: string;
-};
+  id: number;
+  headName: string;
+  address: string;
+  phone: string;
+  note?: string;
+} | null;
 
-export function findMontoById(input: FindMontoByIdInput): FindMontoByIdOutput {
+export async function findMontoById(
+  db: Database,
+  input: FindMontoByIdInput
+): Promise<FindMontoByIdOutput> {
+  const [monto] = await db
+    .select()
+    .from(montos)
+    .where(eq(montos.id, input.id))
+    .limit(1);
+
+  if (!monto) {
+    return null;
+  }
+
   return {
-    id: input.id,
+    ...monto,
+    note: monto.note ?? undefined,
   };
 }

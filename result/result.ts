@@ -3,12 +3,12 @@ export type Ok<T> = {
   data: T;
 };
 
-export type Error = {
+export type ErrorResult = {
   ok: false;
   error: Error;
 };
 
-export type Result<T> = Ok<T> | Error;
+export type Result<T> = Ok<T> | ErrorResult;
 
 export function ok<T>(data: T): Result<T> {
   return {
@@ -17,9 +17,9 @@ export function ok<T>(data: T): Result<T> {
   };
 }
 
-export function error(error: Error): Result<never> {
+export function error(err: Error): Result<never> {
   return {
     ok: false,
-    error,
+    error: err,
   };
 }
