@@ -6,7 +6,7 @@ export default createRoute((c) => {
     {
       id: 1,
       username: "yamada_taro",
-      email: "yamada@example.com",
+      email: "yamada",
       role: "管理者",
       status: "アクティブ",
       registeredAt: "2024-01-15",
@@ -15,7 +15,7 @@ export default createRoute((c) => {
     {
       id: 2,
       username: "suzuki_hanako",
-      email: "suzuki@example.com",
+      email: "suzuki",
       role: "編集者",
       status: "アクティブ",
       registeredAt: "2024-02-20",
@@ -24,7 +24,7 @@ export default createRoute((c) => {
     {
       id: 3,
       username: "tanaka_jiro",
-      email: "tanaka@example.com",
+      email: "tanaka",
       role: "一般ユーザー",
       status: "停止中",
       registeredAt: "2024-03-10",
@@ -33,7 +33,7 @@ export default createRoute((c) => {
     {
       id: 4,
       username: "sato_akiko",
-      email: "sato@example.com",
+      email: "sato",
       role: "一般ユーザー",
       status: "アクティブ",
       registeredAt: "2024-04-05",
@@ -42,7 +42,7 @@ export default createRoute((c) => {
     {
       id: 5,
       username: "watanabe_ken",
-      email: "watanabe@example.com",
+      email: "watanabe",
       role: "編集者",
       status: "アクティブ",
       registeredAt: "2024-04-25",
